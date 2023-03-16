@@ -8,5 +8,7 @@ INSERT INTO TB_CIDADE
     (ID_CIDADE, NOME, QTD_HABITANTES)
 VALUES
     (1, 'Salvador', 2886698),
-    (2, 'Recife', 1653461);
-
+    (2, 'Recife', 1653461),
+    (3, 'Fortaleza', 2643247),
+    (4, 'São Paulo', 12396372),
+    (5, 'Rio de Janeiro', 6320446);

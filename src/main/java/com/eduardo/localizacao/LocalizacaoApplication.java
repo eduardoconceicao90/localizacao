@@ -16,13 +16,7 @@ public class LocalizacaoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		salvarCidade();
 		listarCidades();
-	}
-
-	void salvarCidade(){
-		var cidade = new Cidade(1L, "Salvador", 2886698L);
-		cidadeRepository.save(cidade);
 	}
 
 	void listarCidades(){

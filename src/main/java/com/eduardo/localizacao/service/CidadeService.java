@@ -2,8 +2,10 @@ package com.eduardo.localizacao.service;
 
 import com.eduardo.localizacao.domain.Cidade;
 import com.eduardo.localizacao.repository.CidadeRepository;
+import com.eduardo.localizacao.repository.specs.CidadeSpecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +40,11 @@ public class CidadeService {
                 .withStringMatcher(ExampleMatcher.StringMatcher.STARTING);
         Example<Cidade> example = Example.of(cidade, matcher);
         return cidadeRepository.findAll(example);
+    }
+
+    public void listarCidadesByNomeSpecs(){
+        Specification<Cidade> specs = CidadeSpecs.nomeEqual("Salvador")
+                .or(CidadeSpecs.habitantesGreaterThan(1700000));
+        cidadeRepository.findAll(specs).forEach(System.out::println);
     }
 }

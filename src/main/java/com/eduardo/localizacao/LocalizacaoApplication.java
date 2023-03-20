@@ -2,6 +2,7 @@ package com.eduardo.localizacao;
 
 import com.eduardo.localizacao.domain.Cidade;
 import com.eduardo.localizacao.repository.CidadeRepository;
+import com.eduardo.localizacao.service.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,27 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class LocalizacaoApplication implements CommandLineRunner {
 
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private CidadeService cidadeService;
 
 	@Override
 	public void run(String... args) throws Exception {
-		listarCidadesPorQuantidadeHabitantes();
-	}
-
-	void listarCidadesPorNome(){
-		cidadeRepository.findByNomeLike("sal%").forEach(System.out::println);
-	}
-
-	void listarCidadesPorQuantidadeHabitantes(){
-		cidadeRepository.findByHabitantesGreaterThan(1700000L).forEach(System.out::println);
-	}
-
-	void listarCidadesPorHabitantes(){
-		cidadeRepository.findByHabitantes(1653461L).forEach(System.out::println);
-	}
-
-	void listarCidades(){
-		cidadeRepository.findAll().forEach(System.out::println);
+		cidadeService.listarCidadesPorNome();
 	}
 
 	public static void main(String[] args) {

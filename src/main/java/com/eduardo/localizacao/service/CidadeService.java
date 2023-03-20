@@ -16,6 +16,12 @@ public class CidadeService {
     @Autowired
     private CidadeRepository cidadeRepository;
 
+    public void listarCidadesPorNomeSQL(){
+        cidadeRepository.findByNomeSqlNativo("Salvador")
+                .stream().map(cidadeProjection -> new Cidade(cidadeProjection.getId(), cidadeProjection.getNome(), null))
+                .forEach(System.out::println);
+    }
+
     public void listarCidadesPorNome(){
         Pageable pageable = PageRequest.of(0, 3);
         cidadeRepository.findByNomeLike("%%%", pageable).forEach(System.out::println);
